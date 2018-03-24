@@ -1,15 +1,13 @@
 package com.thoughtworks.step;
 
-import java.util.Currency;
-
 public class Account {
-    private final String name;
+    private final AccountNumber name;
     private float bal;
     float minimumBalance = 500;
 
 
-    public Account(String name, float bal) throws MinimumBalanceException {
-        this.name = name;
+    public Account(AccountNumber accountNumber, float bal) throws MinimumBalanceException {
+        this.name = accountNumber;
         if (bal<minimumBalance) throw new MinimumBalanceException();
         this.bal = bal;
     }

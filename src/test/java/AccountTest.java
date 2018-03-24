@@ -1,6 +1,4 @@
-import com.thoughtworks.step.Account;
-import com.thoughtworks.step.InsufficientFundException;
-import com.thoughtworks.step.MinimumBalanceException;
+import com.thoughtworks.step.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +9,8 @@ public class AccountTest {
     private Account teja;
     @Before
     public void setUp() throws Exception {
-        teja = new Account("teja", 1000);
+        AccountNumber accNum = new AccountNumber("1234-1234");
+        teja = new Account(accNum, 1000);
     }
 
     @Test
@@ -35,7 +34,9 @@ public class AccountTest {
     }
 
     @Test(expected = MinimumBalanceException.class)
-    public void minimumBalanceCheckingForCreatingAccount() throws MinimumBalanceException {
-        new Account("teja", 400);
+    public void minimumBalanceCheckingForCreatingAccount() throws Exception {
+        AccountNumber invalidAccNum = new AccountNumber("1234-1234");
+        Account account = new Account(invalidAccNum, 400);
     }
+
 }
