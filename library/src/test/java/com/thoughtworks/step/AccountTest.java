@@ -1,4 +1,7 @@
-import com.thoughtworks.step.*;
+package com.thoughtworks.step;
+
+import org.hamcrest.core.Is;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,17 +18,17 @@ public class AccountTest {
 
     @Test
     public void getBal() {
-     assertThat(teja.getBal(),is(1000.0F));
+     assertThat(teja.getBal(), is(1000.0F));
     }
 
     @Test
     public void credit() {
-        assertThat(teja.credit(1000),is(2000.0F));
+        Assert.assertThat(teja.credit(1000), Is.is(2000.0F));
     }
 
     @Test
     public void debit() throws InsufficientFundException {
-        assertThat(teja.debit(1000),is(0.0F));
+        Assert.assertThat(teja.debit(1000), Is.is(0.0F));
     }
 
     @Test(expected = InsufficientFundException.class)

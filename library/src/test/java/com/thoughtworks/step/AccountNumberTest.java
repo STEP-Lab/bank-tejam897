@@ -1,6 +1,5 @@
-import com.thoughtworks.step.Account;
-import com.thoughtworks.step.AccountNumber;
-import com.thoughtworks.step.InvalidAccountNumberException;
+package com.thoughtworks.step;
+
 import org.junit.Test;
 
 public class AccountNumberTest {
@@ -9,4 +8,5 @@ public class AccountNumberTest {
     public void checkingIfAccountNUmberIsInvalid() throws Exception {
         new AccountNumber("teja_1234");
     }
+
 }

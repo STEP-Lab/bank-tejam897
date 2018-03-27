@@ -1,6 +1,6 @@
 package com.thoughtworks.step;
 
-public class AccountNumber {
+public class AccountNumber extends Object{
 
     private static final String PATTERN = "\\d{4}[-]\\d{4}";
     private final String accNum;
@@ -13,6 +13,4 @@ public class AccountNumber {
     private void validateAccountNumber(String accNum) throws InvalidAccountNumberException {
         if(!accNum.matches(PATTERN) ) throw new InvalidAccountNumberException();
     }
-
-
 }
