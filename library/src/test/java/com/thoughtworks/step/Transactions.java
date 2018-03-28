@@ -36,4 +36,16 @@ public class Transactions {
         }
         return allTransactions;
     }
+
+    public ArrayList<Transaction> getTransactionsAbove(float limit) {
+        ArrayList<Transaction> allTransactions = new ArrayList<>();
+        ArrayList allTrans = getTransactions();
+        int trans;
+        for (trans = 0; trans<allTrans.size(); trans++){
+            if(allTrans.get(trans).getAmount()>limit) {
+                allTransactions.add((Transaction) allTrans.get(trans));
+            }
+        }
+        return allTransactions;
+    }
 }
