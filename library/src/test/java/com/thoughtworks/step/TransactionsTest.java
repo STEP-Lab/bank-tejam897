@@ -16,40 +16,50 @@ public class TransactionsTest {
     @Before
     public void setUp() throws Exception {
         transCollection = new Transactions();
+        ArrayList<Transaction> trans = transCollection.getTransactions();
         credit = transCollection.credit(1000,"teja");
         debit = transCollection.debit(1000,"teja");
     }
 
     @Test
     public void checksWhetherCreditTransactionsRecordedOrNot() {
-        ArrayList<Transaction> trans = transCollection.getTransactions();
-        assertThat(trans,hasItem (credit));
+//        ArrayList<Transaction> trans = transCollection.getTransactions();
+        assertThat(transCollection.getTransactions(),hasItem (credit));
     }
 
     @Test
     public void checksWhetherDebitTransactionsRecordedOrNot() {
+//        ArrayList<Transaction> trans = transCollection.getTransactions();
+        assertThat(transCollection.getTransactions(),hasItem(debit));
+    }
+
+    @Test
+    public void checksTheCollectingBackOfAllTransactions() {
         ArrayList<Transaction> trans = transCollection.getTransactions();
-        assertThat(trans,hasItem(debit));
+        assertThat(transCollection.getTransactions(),hasItems(credit,debit));
     }
 
     @Test
     public void checksCollectingBackOfAllCreditTransactionsFromWholeTransactions() {
         CreditTransaction TestingCredit = transCollection.credit(1000,"nani");
-        ArrayList<Transaction> creditTrans = transCollection.getTransactionsByType(credit.getClass());
-        assertThat(creditTrans,hasItems(credit,TestingCredit));
+        Transactions creditTrans = transCollection.filterTransactionsByType(credit.getClass());
+        ArrayList<Transaction> actual = creditTrans.getTransactions();
+        assertThat(actual,hasItems(credit,TestingCredit));
     }
     @Test
     public void checksCollectingBackOfAllDebitTransactionsFromWholeTransactions() {
         DebitTransaction TestingDebit = transCollection.debit(1000,"nani");
-        ArrayList<Transaction> debitTrans = transCollection.getTransactionsByType(debit.getClass());
-        assertThat(debitTrans,hasItems(debit,TestingDebit));
+        Transactions debitTrans = transCollection.filterTransactionsByType(debit.getClass());
+        ArrayList<Transaction> actual = debitTrans.getTransactions();
+        assertThat(actual,hasItems(debit,TestingDebit));
     }
 
     @Test
     public void checksCollectingBackOfAllTransactionsGreaterThanALimit() {
         float limit = 1000;
         DebitTransaction TestingTransAbove = transCollection.debit(1500,"nani");
-        ArrayList<Transactions> transAbove = transCollection.getTransactionsAbove(limit);
-        assertThat( transAbove,hasItem(TestingTransAbove));
+        Transactions transAbove = transCollection.filterTransactionsAbove(limit);
+        ArrayList<Transaction> actual = transAbove.getTransactions();
+        assertThat( actual,hasItem(TestingTransAbove));
     }
 }
