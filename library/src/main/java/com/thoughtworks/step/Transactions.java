@@ -4,7 +4,7 @@ package com.thoughtworks.step;
 import java.util.ArrayList;
 
 public class Transactions {
-    public ArrayList<Transaction> transactions;
+    private ArrayList<Transaction> transactions;
 
     public Transactions() {
         this.transactions = new ArrayList<Transaction>();
@@ -39,7 +39,7 @@ public class Transactions {
     public Transactions filterTransactionsAbove(float limit) {
         Transactions allTransactions = new Transactions();
         for (Transaction transaction : transactions) {
-            if(transaction.getAmount()>limit){
+            if(transaction.isAbove(limit)){
                 allTransactions.transactions.add(transaction);
             }
         }
@@ -49,7 +49,7 @@ public class Transactions {
     public Transactions filterTransactionsBelow(float limit) {
         Transactions allTransactions = new Transactions();
         for (Transaction transaction : transactions) {
-            if(transaction.getAmount()<limit){
+            if(transaction.isBelow(limit)){
                 allTransactions.transactions.add(transaction);
             }
         }
