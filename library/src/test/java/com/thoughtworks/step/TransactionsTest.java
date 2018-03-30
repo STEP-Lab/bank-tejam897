@@ -62,4 +62,12 @@ public class TransactionsTest {
         ArrayList<Transaction> actual = transAbove.getTransactions();
         assertThat( actual,hasItem(TestingTransAbove));
     }
+    @Test
+    public void checksCollectingBackOfAllTransactionsLesserThanALimit() {
+        float limit = 500;
+        DebitTransaction TestingTransBelow = transCollection.debit(400,"nani");
+        Transactions transAbove = transCollection.filterTransactionsBelow(limit);
+        ArrayList<Transaction> actual = transAbove.getTransactions();
+        assertThat( actual,hasItem(TestingTransBelow));
+    }
 }

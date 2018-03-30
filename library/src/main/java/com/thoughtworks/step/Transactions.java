@@ -45,4 +45,14 @@ public class Transactions {
         }
         return allTransactions;
     }
+
+    public Transactions filterTransactionsBelow(float limit) {
+        Transactions allTransactions = new Transactions();
+        for (Transaction transaction : transactions) {
+            if(transaction.getAmount()<limit){
+                allTransactions.transactions.add(transaction);
+            }
+        }
+        return allTransactions;
+    }
 }
