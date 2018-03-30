@@ -18,4 +18,12 @@ public class Transaction {
     public float getAmount() {
         return amount;
     }
+
+    public boolean isBelow(float limit) {
+        return amount<limit;
+    }
+
+    public boolean isAbove(float limit) {
+        return amount>limit;
+    }
 }

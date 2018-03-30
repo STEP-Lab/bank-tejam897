@@ -29,4 +29,12 @@ public class TransactionTest {
         assertEquals(trans.getAmount(),1000.0,0);
     }
 
+    @Test
+    public void shouldCheckTheTransactionBelowOnAGivenLimit() {
+        assertTrue(trans.isBelow(1500));
+    }
+    @Test
+    public void shouldCheckTheTransactionAboveOnAGivenLimit() {
+        assertTrue(trans.isAbove(500));
+    }
 }
